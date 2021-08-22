@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.css"
+      media="screen,projection"
+    />
+
+    <link rel="stylesheet" href="css/design.css" />
+    <link rel="icon" href="./assests/icon.png">
+    <title>Toddle Drive - New Hire Onboarding</title>
+  </head>
+
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="container_95">
+          <a href="#" class="brand-logo valign-wrapper">
+            <img src="./assests/Logo.svg" alt="" style="margin-top: 12px" />
+          </a>
+          <div class="nav-wrapper">
+            <div class="col s12" style="margin-left: 4rem">
+              <a href="index.html" class="breadcrumb">My Documents</a>
+              <a href="Training.html" class="breadcrumb">Training</a>
+              <a href="#!" class="breadcrumb">New hire onboarding</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="top-section">
+        <div class="text-section">
+          <p class="name-and-title">New Hire Onboarding</p>
+          <div class="render-numbers"></div>
+        </div>
+
+        <div class="action-buttons valign-wrapper right">
+          <a
+            href="#modal-new-folder"
+            class="modal-close new-folder-btn center-align modal-trigger"
+            >New Folder</a
+          >
+          <a
+            href="#modal-new-file"
+            class="modal-close btn-flat-new-file center-align modal-trigger"
+            >New File</a
+          >
+        </div>
+      </div>
+
+      <div class="row left search-bar-row valign-wrapper">
+        <!--Searchbar-->
+        <div class="col s-10 m-4 l-4 valign-wrapper">
+          <div class="search-bar valign-wrapper">
+            <a href="#"
+              ><img
+                src="./assests/resources/SearchO.svg"
+                alt=""
+                class="search-icon"
+            /></a>
+            <input
+              type="text"
+              placeholder="Search for a folder or file"
+              class="search"
+              style="border: none"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="render-number-of-folders">
+            <!--Number of folders will be rendered here-->
+          </div>
+        </div>
+        <div class="folder-cards-rendering-section">
+          <!--Folder Cards will get rendered here -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="render-number-of-files">
+            <!--Number of files will be rendered here-->
+          </div>
+        </div>
+
+        <div class="file-cards-rendering-section">
+          <!--File Cards will get rendered here-->
+        </div>
+      </div>
+    </div>
+
+    <div class="folder-modals-rendering-section">
+      <!--modals will be rendered here-->
+    </div>
+
+    <div class="files-modals-rendering-section"></div>
+
+    <div id="modal-new-file" class="modal">
+      <form id="form-new-file">
+        <div class="modal-content">
+        <h4>Create a new file</h4>
+        <p>Name of the file</p>
+        <input
+          placeholder="Enter folder name"
+          id="new-file-name"
+          type="text"
+          class="validate"
+        />
+      </div>
+      <div class="modal-footer">
+        <button class="modal-close btn-flat cancel center-align">Cancel</button>
+        <input type="submit" value="Create File" class="modal-close btn-flat center-align"></input>
+      </div>
+      </form>
+    </div>
+
+    
+
+    <div id="modal-new-folder" class="modal">
+      <form id="form-new-folder">
+        <div class="modal-content">
+        <h4>Create a new folder</h4>
+        <p>Name of the folder</p>
+        <input
+          placeholder="Enter folder name"
+          id="new-folder-name"
+          type="text"
+          class="validate"
+        />
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close btn-flat cancel center-align">Cancel</a>
+        <input type="submit" value="Create Folder" class="modal-close btn-flat center-align"></input>
+      </div>
+      </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script id="file-modal-script"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/new_hire_onboarding.js"></script>
+    <script>
+        
+        $('.modal').modal();
+        $('.dropdown-trigger').dropdown({alignment:'right',coverTrigger:false});
+    </script>
+  </body>
+</html>
