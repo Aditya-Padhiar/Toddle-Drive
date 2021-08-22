@@ -25,6 +25,9 @@
   </head>
 
   <body>
+    <div id="nanobar">
+      <div class="nanobar"></div>
+    </div>
     <div class="navbar-fixed">
       <nav>
         <div class="container_95">
@@ -44,7 +47,7 @@
     <div class="container">
       <div class="top-section">
         <div class="text-section">
-          <p class="name-and-title">New Hire Onboarding</p>
+          <p class="name-and-title">Training</p>
           <div class="render-numbers"></div>
         </div>
 
@@ -66,23 +69,37 @@
         <!--Searchbar-->
         <div class="col s-10 m-4 l-4 valign-wrapper">
           <div class="search-bar valign-wrapper">
-            <a href="#"
+            <a href="#"  
               ><img
                 src="./assests/resources/SearchO.svg"
                 alt=""
                 class="search-icon"
+                id="s"
             /></a>
             <input
               type="text"
               placeholder="Search for a folder or file"
               class="search"
+              id="sb"
               style="border: none"
             />
+            <a href="#" 
+              ><img
+                src="./assests/resources/CancelOutlined.svg"
+                alt=""
+                class="search-icon"
+                style="display: none;"
+                id="x"
+            /></a>
           </div>
         </div>
       </div>
+      
+      <div class="row" id="search-results">
 
-      <div class="row">
+      </div>
+
+      <div class="row" id = "h1">
         <div class="col s12 m12 l12">
           <div class="render-number-of-folders">
             <!--Number of folders will be rendered here-->
@@ -93,7 +110,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" id="h2">
         <div class="col s12 m12 l12">
           <div class="render-number-of-files">
             <!--Number of files will be rendered here-->
@@ -118,7 +135,7 @@
         <h4>Create a new file</h4>
         <p>Name of the file</p>
         <input
-          placeholder="Enter folder name"
+          placeholder="Enter file name (with proper file extentsion)"
           id="new-file-name"
           type="text"
           class="validate"
@@ -152,17 +169,35 @@
       </form>
     </div>
 
-
+    <script src="./js/nanobar.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script id="file-modal-script"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="js/training.js"></script>
+    
     <script>
         
         $('.modal').modal();
         $('.dropdown-trigger').dropdown({alignment:'right',coverTrigger:false});
+    </script>
+    <script>
+        var options = {
+        classname: "my-class",
+        id: "my-id",
+        target: document.getElementById("myDivId"),
+      };
+
+      var nanobar = new Nanobar(options);
+
+      // move bar
+      nanobar.go(30); // size bar 30%
+      nanobar.go(76); // size bar 76%
+
+      // size bar 100% and and finish
+      nanobar.go(100);
+
     </script>
   </body>
 </html>

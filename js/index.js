@@ -109,7 +109,6 @@ function render_folders(folders) {
         </div>
       </form>
     </div>
-
     <div id="modal${i}-delete" class="modal">
       <form id="delete-folder-modal${i}">
         <div class="modal-content">
@@ -126,7 +125,6 @@ function render_folders(folders) {
         </div>
       </form>
     </div>
-
   ` + rendered_modals;
   }
 
@@ -183,7 +181,6 @@ function render_files(files, filetype) {
                 <p>${filetype[i]}</p>
                 <h5>${files[i]}</h5>
               </div>
-
               <a
                 
                 class="dropdown-trigger valign-wrapper"
@@ -260,7 +257,6 @@ function render_files(files, filetype) {
         </div>
       </form>
     </div>
-
     <div id="modal${i}-delete-file" class="modal">
       <form id="delete-file${i}">
         <div class="modal-content">
@@ -436,4 +432,199 @@ function modifyfolders(e) {
   }
 
   e.stopPropagation();
+}
+
+var search = document.querySelector(".search-bar");
+search.addEventListener("click", search_handler, false);
+
+function search_handler(e) {
+  e.preventDefault();
+  console.log(e.target.id);
+  if (e.target.id == "s") {
+    document.getElementById("x").style.display = "";
+    document.querySelector("#h1").classList.add("hide");
+    document.querySelector("#h2").classList.add("hide");
+    console.log(document.getElementById("sb").value);
+    var filter = document.getElementById("sb").value.toUpperCase();
+    var result_folders = [];
+    for (var i = 0; i < folders.length; i++) {
+      let name = folders[i];
+      if (name.toUpperCase().indexOf(filter) > -1) {
+        result_folders.push(i);
+      }
+    }
+
+    var result_files = [];
+    for (var i = 0; i < files.length; i++) {
+      let name = files[i];
+      if (name.toUpperCase().indexOf(filter) > -1) {
+        result_files.push(i);
+      }
+    }
+
+    render_search_folders(folders, result_folders);
+    render_search_files(files, filetype, result_files);
+  }
+  if (e.target.id == "x") {
+    document.getElementById("sb").value = "";
+    document.getElementById("x").style.display = "none";
+    document.querySelector("#h1").classList.remove("hide");
+    document.querySelector("#h2").classList.remove("hide");
+    document.querySelector("#search-results").innerHTML = "";
+  }
+}
+
+function render_search_files(files, filetype, result_files) {
+  var file_cards_render_section = document.querySelector("#search-results");
+
+  for (var i = 0; i < result_files.length; i++) {
+    var rendered_cards = document.querySelector("#search-results").innerHTML;
+    file_cards_render_section.innerHTML =
+      `
+    <div class="col s12 m4 l3">
+          <div class="my-card">
+            <div class="icon-layer-filetype-${
+              filetype[result_files[i]]
+            } valign-wrapper">
+              <img
+                class="card-icon"
+                src="./assests/resources/File-${filetype[result_files[i]]}.svg"
+                alt=""
+              />
+            </div>
+            <div class="bottom-layer valign-wrapper">
+              <div class="left-align">
+                <p>${filetype[result_files[i]]}</p>
+                <h5>${files[result_files[i]]}</h5>
+              </div>
+              <a
+                
+                class="dropdown-trigger valign-wrapper"
+                style="margin-top: 1.2rem"
+                data-target="dropdown${result_files[i]}-file"
+              >
+                <img
+                  src="./assests/resources/DotsVerticalO.svg"
+                  alt=""
+                  class="responsive-img"
+                />
+              </a>
+              <ul id="dropdown${result_files[i]}-file" class="dropdown-content">
+                <li>
+                  <a
+                    class="valign-wrapper modal-trigger"
+                    href="#modal${result_files[i]}-rename-file"
+                    ><img
+                      class="popup-icon"
+                      src="./assests/rename-folder.svg"
+                      alt=""
+                    />
+                    Rename file</a
+                  >
+                </li>
+                <li>
+                  <a href="#!" class="valign-wrapper"
+                    ><img
+                      class="popup-icon"
+                      src="./assests/duplicate-folder.svg"
+                      alt=""
+                    />
+                    Duplicate file</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="valign-wrapper modal-trigger"
+                    href="#modal${result_files[i]}-delete-file"
+                    ><span class="red-dropdown"
+                      ><img
+                        class="popup-icon"
+                        src="./assests/delete-folder.svg"
+                        alt=""
+                      />
+                      Delete file</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    ` + rendered_cards;
+  }
+}
+
+function render_search_folders(folder, result_folders) {
+  var folder_cards_render_section = document.querySelector("#search-results");
+
+  folder_cards_render_section.innerHTML = ``;
+  for (var i = 0; i < result_folders.length; i++) {
+    var rendered_cards = document.querySelector("#search-results").innerHTML;
+
+    folder_cards_render_section.innerHTML =
+      `
+  <div class="col s12 m4 l3">
+            <div class="my-card">
+              <a href="${folders[result_folders[i]]}.html">
+                  <div class="icon-layer valign-wrapper">
+                  <img class="card-icon" src="./assests/Folder-icon.svg"  alt="" />
+                </div>
+                </a>
+              <div class="bottom-layer valign-wrapper">
+                <a href="${
+                  folders[result_folders[i]]
+                }.html" class="left-align">${folders[result_folders[i]]}</a>
+                <a href="#!" class="dropdown-trigger" data-target="dropdown${
+                  result_folders[i]
+                }">
+                  <img
+                    src="./assests/resources/DotsVerticalO.svg"
+                    alt=""
+                    class="responsive-img"
+                    style="margin-top: 0.5rem"
+                  />
+                </a>
+                <ul id="dropdown${result_folders[i]}" class="dropdown-content">
+                  <li>
+                    <a
+                      class="valign-wrapper modal-trigger"
+                      href="#modal${result_folders[i]}-rename"
+                      ><img
+                        class="popup-icon"
+                        src="./assests/rename-folder.svg"
+                        alt=""
+                      />
+                      Rename folder</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#!" class="valign-wrapper"
+                      ><img
+                        class="popup-icon"
+                        src="./assests/duplicate-folder.svg"
+                        alt=""
+                      />
+                      Duplicate folder</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="valign-wrapper modal-trigger"
+                      href="#modal${result_folders}-delete"
+                      ><span class="red-dropdown"
+                        ><img
+                          class="popup-icon"
+                          src="./assests/delete-folder.svg"
+                          alt=""
+                        />
+                        Delete folder</span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+  ` + rendered_cards;
+  }
 }
